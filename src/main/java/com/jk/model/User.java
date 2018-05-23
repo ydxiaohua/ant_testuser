@@ -14,12 +14,6 @@ public class User implements Serializable{
 
     private   String   username;
 
-    private   String   usertime;
-
-    private   String   userdh;
-
-    private   String   userdz;
-
     private   String   userpass;
 
     public static long getSerialVersionUID() {
@@ -42,29 +36,6 @@ public class User implements Serializable{
         this.username = username;
     }
 
-    public String getUsertime() {
-        return usertime;
-    }
-
-    public void setUsertime(String usertime) {
-        this.usertime = usertime;
-    }
-
-    public String getUserdh() {
-        return userdh;
-    }
-
-    public void setUserdh(String userdh) {
-        this.userdh = userdh;
-    }
-
-    public String getUserdz() {
-        return userdz;
-    }
-
-    public void setUserdz(String userdz) {
-        this.userdz = userdz;
-    }
 
     public String getUserpass() {
         return userpass;
@@ -80,9 +51,6 @@ public class User implements Serializable{
         return "User{" +
                 "userid=" + userid +
                 ", username='" + username + '\'' +
-                ", usertime='" + usertime + '\'' +
-                ", userdh='" + userdh + '\'' +
-                ", userdz='" + userdz + '\'' +
                 ", userpass='" + userpass + '\'' +
                 '}';
     }

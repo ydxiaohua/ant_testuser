@@ -1,0 +1,65 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.dao.BaomingDao">
+
+   <!-- <insert id="addBaoUser" parameterType="com.jk.model.Registrationcentre">
+      INSERT INTO t_baouser VALUES(${BAOUSERID},${BAOUSERNAME},${BAOUSERSEX},${BAOUSERPHONE},${BAOUSERQQ},${BAOUSERWEIXIN},${BAOUSERMAXXL},${BAOUSERGRADUATEDATE},${PRESENTPAY},${PRESENTSTATUS},${YNCONTCAT})
+    </insert>-->
+
+    <select id="querybaolist" resultType="com.jk.model.Registrationcentre">
+        SELECT * FROM t_baouser
+    </select>
+
+    <delete id="deletebaoming">
+        DELETE FROM t_baouser where BAOUSERID = #{baouserid}
+    </delete>
+
+    <select id="selectid" resultType="com.jk.model.Registrationcentre">
+        SELECT * FROM t_baouser WHERE BAOUSERID = #{baouserid}
+    </select>
+
+    <update id="updatebaoming">
+        UPDATE t_baouser SET baousername=#{baousername},baousersex=#{baousersex},baouserphone=#{baouserphone},
+            baouserqq=#{baouserqq},baouserweixin=#{baouserweixin},baousermaxxl=#{baousermaxxl},
+            baousergraduatedate=#{baousergraduatedate},presentpay=#{presentpay},presentstatus=#{presentstatus}
+          WHERE baouserid=#{baouserid}
+    </update>
+
+    <insert id="addbaoming" parameterType="com.jk.model.Registrationcentre">
+        INSERT INTO t_baouser VALUES(#{baouserid},#{baousername},#{baousersex},#{baouserphone},#{baouserqq},#{baouserweixin},#{baousermaxxl},#{baousergraduatedate},#{presentpay},#{presentstatus},#{yncontcat})
+    </insert>
+
+    <delete id="deletevipuser">
+     DELETE FROM t_people where PEOPLEID = #{peopleid}
+    </delete>
+
+    <select id="queryvipuserlist" resultType="com.jk.model.People">
+     SELECT * FROM t_people  WHERE 1=1
+      <if test="phone !=null">
+          and phone like '%${phone}%'
+      </if>
+      <if test="peoplenickname !='' ">
+        and peoplenickname like '%${peoplenickname}%'
+      </if>
+      <if test="minage !=null ">
+          and peopleage &gt;= #{minage}
+      </if>
+      <if test="maxage !=null ">
+          and peopleage &lt;= #{maxage}
+      </if>
+
+    </select>
+ <!-- <select  id="listuser" resultType="com.jk.model.User">
+     select  *  from  t_user
+  </select>
+
+  <delete id="deleteXin">
+        delete from xinwen  where  xid =#{xid}
+    </delete>
+
+   <update id="updateuser">
+        update t_user set username=#{username},usertime=#{usertime},userdh=#{userdh},userdz=#{userdz}  where  userid=#{userid}
+    </update>
+-->
+</mapper>
