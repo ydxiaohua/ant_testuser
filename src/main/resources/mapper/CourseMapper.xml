@@ -1,0 +1,131 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.dao.CourseDao">
+
+
+  <select  id="queryteacher" resultType="com.jk.model.Teacher">
+
+    select  *  from  t_teacher
+
+  </select>
+
+
+
+
+  <insert id="addTeacher">
+    insert into t_teacher values (teacherid,#{teachername},#{teacherdate})
+  </insert>
+
+
+
+  <delete id="deleteteacher">
+    delete from t_teacher  where   teacherid=#{teacherid}
+  </delete>
+
+  <select id="queryteacherid" resultType="com.jk.model.Teacher">
+
+    select * from t_teacher  where   teacherid=#{teacherid}
+
+  </select>
+
+
+
+
+  <update id="updateteacher">
+
+    update t_teacher set teachername=#{teachername},teacherdate=#{teacherdate}  where  teacherid=#{teacherid}
+
+  </update>
+
+
+
+
+
+  <select  id="querydagang" resultType="com.jk.model.DaGang">
+
+    select  t.*, u.username username  from  t_dagang t , t_user u where  t.uid= u.userid
+
+  </select>
+
+
+
+
+
+  <insert id="adddagang">
+    insert into t_dagang values (dgid,#{dgname},#{uid},#{pdate},#{ynvip},#{xiaojie})
+  </insert>
+
+
+  <delete id="deletedagang">
+    delete from t_dagang  where   dgid=#{dgid}
+  </delete>
+
+
+  <select id="querydgid" resultType="com.jk.model.DaGang">
+
+    select * from t_dagang  where   dgid=#{dgid}
+
+  </select>
+
+
+
+  <update id="updatedagang">
+
+  update t_dagang set dgname=#{dgname},uid=#{uid},pdate=#{pdate},ynvip=#{ynvip},xiaojie=#{xiaojie}  where  dgid=#{dgid}
+
+</update>
+
+  <select  id="querycourse" resultType="com.jk.model.Course">
+
+    select t1.*,t2.classname classname,t3.teachername teachername from t_course t1, t_class t2, t_teacher t3 where t1.classid= t2.classid and t1.teacherid = t3.teacherid
+
+  </select>
+
+
+
+  <select  id="queryclass" resultType="com.jk.model.Class">
+
+    select * from t_class
+
+  </select>
+
+
+
+  <insert id="addcourse">
+    insert into t_course values (courseid,#{teacherid},#{coursename},#{xianprice},#{yuanprice},#{dazhe},#{jieshao},#{classid},#{ynvip},#{coursecode},#{downcode},#{lookcode},#{lunbotustate},#{tuiguangphoto},#{ynjingpin})
+  </insert>
+
+
+  <delete id="deletecourse">
+    delete from t_course  where   courseid=#{courseid}
+  </delete>
+
+  <select id="querycourseid" resultType="com.jk.model.Course">
+
+    select * from t_course  where    courseid=#{courseid}
+
+  </select>
+
+
+  <update id="updatecourse">
+
+    update t_course set teacherid=#{teacherid},coursename=#{coursename},xianprice=#{xianprice},yuanprice=#{yuanprice},dazhe=#{dazhe},jieshao=#{jieshao},classid=#{classid},ynvip=#{ynvip},coursecode=#{coursecode},downcode=#{downcode},lookcode=#{lookcode},lunbotustate=#{lunbotustate},tuiguangphoto=#{tuiguangphoto},ynjingpin=#{ynjingpin}  where  courseid=#{courseid}
+
+  </update>
+  <!--queryvideo-->
+
+  <select  id="queryvideo" resultType="com.jk.model.Video">
+
+select v.*,c.coursename coursename,d.dgname dgname,u.username username  from t_video v, t_course c, t_dagang d,t_user u where v.courseid = c.courseid and v.dgid = d.dgid and v.userid = u.userid
+  </select>
+
+
+  <!--
+
+      <select id="queuser" resultType="com.jk.model.User">
+
+          select * from t_user where userid = #{userid}
+
+      </select>-->
+</mapper>
