@@ -1,0 +1,26 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.dao.Echartsdao">
+
+  <select  id="echarts" resultType="com.jk.model.Course">
+
+   select  *  from  t_course a  GROUP BY  a.coursename
+
+  </select>
+
+    <select  id="chaxliu" resultType="com.jk.model.Liu">
+
+  select liuid , substring(syllabusid,1,4) as syllabusid ,SUM(shulian) as shulian   from  t_liu  GROUP BY   substring(syllabusid,1,4)
+
+    </select>
+    <select  id="chaxliuyue" resultType="com.jk.model.Liu">
+
+select   substring(syllabusid,6,2) as syllabusid ,SUM(shulian) as shulian  from t_liu  where  substring(syllabusid,1,4)=#{name} GROUP BY   substring(syllabusid,6,2)
+    </select>
+    <insert id="addliulist"  parameterType="com.jk.model.Liu">
+
+insert into  t_liu  values (#{liuid},#{syllabusid},#{shulian})
+    </insert>
+
+</mapper>
