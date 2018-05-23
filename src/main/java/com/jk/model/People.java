@@ -4,23 +4,20 @@ import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 
-/**
- * Created by ASUS on 2018/5/16.
- */
 public class People implements Serializable {
-    private static final long serialVersionUID = 7306508843024901955L;
 
+    private static final long serialVersionUID = 6286034585767231268L;
     @Id
-    private Integer peopleid;
-    private String email;
-    private Integer phone;
-    private String peoplepass;
-    private Integer ynvip;
-    private String vipendtime;
-    private String peoplename;
-    private String peoplenickname;
-    private Integer peoplesex;
-    private Integer peopleage;
+    private   Integer  peopleid;
+    private   String   email;
+    private   String   phone;
+    private   String   peoplepass;
+    private   Integer  ynvip;
+    private   String   vipenddate;
+    private   String   peoplename;
+    private   String   peoplenickname;
+    private   Integer  peoplesex;
+    private   Integer  peopleage;
 
     public Integer getPeopleid() {
         return peopleid;
@@ -38,11 +35,11 @@ public class People implements Serializable {
         this.email = email;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -62,12 +59,12 @@ public class People implements Serializable {
         this.ynvip = ynvip;
     }
 
-    public String getVipendtime() {
-        return vipendtime;
+    public String getVipenddate() {
+        return vipenddate;
     }
 
-    public void setVipendtime(String vipendtime) {
-        this.vipendtime = vipendtime;
+    public void setVipenddate(String vipenddate) {
+        this.vipenddate = vipenddate;
     }
 
     public String getPeoplename() {
@@ -107,10 +104,10 @@ public class People implements Serializable {
         return "People{" +
                 "peopleid=" + peopleid +
                 ", email='" + email + '\'' +
-                ", phone=" + phone +
+                ", phone='" + phone + '\'' +
                 ", peoplepass='" + peoplepass + '\'' +
                 ", ynvip=" + ynvip +
-                ", vipendtime='" + vipendtime + '\'' +
+                ", vipenddate='" + vipenddate + '\'' +
                 ", peoplename='" + peoplename + '\'' +
                 ", peoplenickname='" + peoplenickname + '\'' +
                 ", peoplesex=" + peoplesex +

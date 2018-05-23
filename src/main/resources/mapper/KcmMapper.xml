@@ -1,0 +1,138 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.dao.KcmDao">
+
+    <select  id="listuser" resultType="com.jk.model.User">
+        select  *  from  t_user
+    </select>
+    <!--用户登录-->
+    <select id="loginUser"   resultType="com.jk.model.User">
+        select * from t_user  where username =#{username}
+    </select>
+
+    <!--权限树-->
+    <select id="queryTreeByPid"  resultType="com.jk.model.Quan">
+        SELECT * from t_quan q where q.pid= #{shu} and  q.quanid  in  (
+            SELECT rq.rqid  from t_rolequan rq where rq.rid  in (
+                  SELECT t1.urid  from t_user t,t_userrole t1  where t.userid =t1.uid
+                            and t.userid=#{userid} ) )
+    </select>
+    <!--查询问题列表-->
+    <select id="queryWenList" resultType="com.jk.model.Courseproblem">
+        SELECT t1.*,t2.peoplename
+             from t_question t1,t_people t2 WHERE
+                    t1.peopleid =t2.peopleid
+    </select>
+
+    <!--查询浏览数通过id-->
+    <select id="querywenbyid" resultType="java.lang.Integer">
+        SELECT  looknum  from t_question WHERE questionid=#{questionid}
+    </select>
+    <!--查询浏览数通过id-->
+    <select id="tohuifu" resultType="com.jk.model.Courseproblem">
+        SELECT  *  from t_question WHERE questionid=#{questionid}
+    </select>
+
+    <!--查询页面热门问题推荐-->
+    <select id="querypagewen" resultType="com.jk.model.Courseproblem">
+        select  t1.* ,COUNT(t2.resultid)  AS  huidashu
+               from t_question t1,t_result t2
+			            where t1.questionid=t2.questionid GROUP BY t2.questionid
+									 ORDER BY COUNT(t2.resultid) desc
+
+    </select>
+    <!--查询答案-->
+    <select id="querydaanList" resultType="com.jk.model.Answer">
+          SELECT  t1.*,t2.questionname,t3.peoplename
+                FROM t_result t1,t_question t2,t_people t3 where
+                         t1.questionid=t2.questionid and t1.userid =t3.peopleid
+    </select>
+
+    <!--新增问题-->
+    <insert id="addWenti" parameterType="com.jk.model.Courseproblem">
+        INSERT into t_question values
+		(#{questionid},#{peopleid},#{questiontypeid},#{questioncontent},#{questionname},#{questiondate},#{typeid})
+    </insert>
+
+    <!--新增问题类型-->
+    <insert id="addWentype" parameterType="com.jk.model.ProblemType">
+        INSERT into t_questiontype values
+		(#{questionid},#{questionname})
+    </insert>
+
+    <!--新增答案-->
+    <insert id="adddaan" parameterType="com.jk.model.Answer">
+        INSERT into t_result values
+		   (#{resultid},#{questionid},#{resultcontent},#{userid},#{resultdate},#{beizancode})
+    </insert>
+
+    <!--查询问题类型-->
+    <select id="queryWenType" resultType="com.jk.model.ProblemType">
+          SELECT * from  t_questiontype
+    </select>
+
+    <!--回显问题-->
+    <select id="huixianwen" parameterType="java.lang.Integer" resultType="com.jk.model.Courseproblem">
+        SELECT  * from  t_question where questionid = #{wenid}
+    </select>
+
+    <!--回显问题类型-->
+    <select id="huixianwentype" parameterType="java.lang.Integer" resultType="com.jk.model.ProblemType">
+        SELECT  * from  t_questiontype where questionid = #{id}
+    </select>
+
+    <!--回显问题类型-->
+    <select id="huixiandaan" parameterType="java.lang.Integer" resultType="com.jk.model.Answer">
+        SELECT  *  from  t_result where resultid = #{id}
+    </select>
+
+    <!--修改问题-->
+    <update id="updatewen" parameterType="com.jk.model.Courseproblem">
+     UPDATE t_question SET
+                    peopleid=#{peopleid},
+                    questiontypeid=#{questiontypeid},
+                    questioncontent=#{questioncontent},
+                    questionname=#{questionname},
+                    questiondate=#{questiondate},
+                    typeid=#{typeid}
+     WHERE questionid=#{questionid}
+    </update>
+
+    <!--修改问题类型-->
+    <update id="updatewentype" parameterType="com.jk.model.ProblemType">
+     UPDATE t_questiontype SET
+                    questionname=#{questionname}
+                         WHERE questionid=#{questionid}
+    </update>
+
+    <!--修改答案-->
+    <update id="updatedaan" parameterType="com.jk.model.Answer">
+     UPDATE  t_result SET
+                    resultcontent=#{resultcontent}
+                         WHERE resultid=#{resultid}
+    </update>
+
+    <!--修改浏览数-->
+    <update id="updatenum"  parameterType="com.jk.model.Courseproblem">
+     UPDATE  t_question SET
+                    looknum = #{num}+1
+                         WHERE questionid=#{questionid}
+    </update>
+
+    <!--删除问题-->
+    <delete id="deletewen" parameterType="java.lang.Integer">
+        DELETE  FROM t_question   WHERE questionid = #{id}
+    </delete>
+
+    <!--删除问题类型-->
+    <delete id="deletewentype" parameterType="java.lang.Integer">
+        DELETE  FROM t_questiontype   WHERE questionid = #{id}
+    </delete>
+
+    <!--删除答案-->
+    <delete id="deletedaan" parameterType="java.lang.Integer">
+        DELETE  FROM  t_result   WHERE  resultid = #{id}
+    </delete>
+
+</mapper>

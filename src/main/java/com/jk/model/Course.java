@@ -38,7 +38,11 @@ public class Course implements Serializable{
 
      private int  ynjingpin;        //是否精品
 
+<<<<<<< HEAD
+    //业务字段
+=======
     //业务字
+>>>>>>> origin/master
     private String   classname;
     private String  teachername;
 
@@ -199,4 +203,9 @@ public class Course implements Serializable{
                 ", ynjingpin=" + ynjingpin +
                 '}';
     }
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> origin/master
 }

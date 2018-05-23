@@ -1,24 +1,31 @@
 package com.jk.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.io.Serializable;
 
-@Document(collection="userlogin")
+
+/**
+ *
+ */
 public class User implements Serializable{
 
-    private static final long serialVersionUID = -7567065163375619856L;
-    @Id
+
+    private static final long serialVersionUID = -2041355668909509945L;
+
     private   Integer  userid;
 
     private   String   username;
 
+    private   String   usertime;
+
+    private   String   userage;
+
+    private   String   usersex;
+
     private   String   userpass;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+    private String ztid;
+
+
 
     public Integer getUserid() {
         return userid;
@@ -26,6 +33,14 @@ public class User implements Serializable{
 
     public void setUserid(Integer userid) {
         this.userid = userid;
+    }
+
+    public String getUsertime() {
+        return usertime;
+    }
+
+    public void setUsertime(String usertime) {
+        this.usertime = usertime;
     }
 
     public String getUsername() {
@@ -36,6 +51,21 @@ public class User implements Serializable{
         this.username = username;
     }
 
+    public String getUserage() {
+        return userage;
+    }
+
+    public void setUserage(String userage) {
+        this.userage = userage;
+    }
+
+    public String getUsersex() {
+        return usersex;
+    }
+
+    public void setUsersex(String usersex) {
+        this.usersex = usersex;
+    }
 
     public String getUserpass() {
         return userpass;
@@ -45,16 +75,27 @@ public class User implements Serializable{
         this.userpass = userpass;
     }
 
+    public String getZtid() {
+        return ztid;
+    }
+
+    public void setZtid(String ztid) {
+        this.ztid = ztid;
+    }
 
     @Override
     public String toString() {
         return "User{" +
                 "userid=" + userid +
                 ", username='" + username + '\'' +
+                ", usertime='" + usertime + '\'' +
+                ", userage='" + userage + '\'' +
+                ", usersex='" + usersex + '\'' +
                 ", userpass='" + userpass + '\'' +
+                ", ztid=" + ztid +
                 '}';
     }
-
-
-
 }
+
+
+
