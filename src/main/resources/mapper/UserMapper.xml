@@ -3,46 +3,121 @@
 
 <mapper namespace="com.jk.dao.UserDao">
 
-  <select  id="listuser" resultType="com.jk.model.User">
-  
-     select  *  from  t_user
-  
-  </select>
+    <select  id="queryUserName" resultType="com.jk.model.User">
 
-
-
-    <select id="loginUser"   resultType="com.jk.model.User">
-
-        select * from t_user  where username =#{username}
+        SELECT  *  FROM  t_user WHERE username=#{username}
 
     </select>
 
+    <select  id="queryUserPass" resultType="com.jk.model.User">
 
+        SELECT  *  FROM  t_user WHERE username=#{username} AND userpass=#{userpass}
 
-  <!--  <delete id="deleteXin">
-        delete from xinwen  where  xid =#{xid}
+    </select>
+
+    <select id="queryMenu" resultType="com.jk.model.Menu">
+SELECT * from t_menu q where q.pid=#{pid} and  q.id  in  (
+    SELECT rq.qid  from t_role_menu rq where rq.rid  in (
+          SELECT t1.roleid  from t_user t,t_user_role t1  where t.userid =t1.userid
+                    and t.userid=#{userid}) )
+    </select>
+
+    <select  id="queryUser" resultType="com.jk.model.User">
+
+        SELECT  *  FROM  t_user
+
+    </select>
+
+    <select  id="queryRole" resultType="com.jk.model.Role">
+
+        SELECT  *  FROM  t_role
+
+    </select>
+
+    <delete id="deleteUser">
+        delete from t_user  where  userid =#{userid}
     </delete>
 
+    <insert id="addUser"  parameterType="com.jk.model.User">
+        insert into  t_user (username,userage,usertime,usersex)
+        values(#{username},#{userage},#{usertime},#{usersex})
+    </insert>
 
-
-    <select id="huixianXin" resultType="com.baidu.model.XinWen">
-
-        select * from xinwen where xid = #{xid}
-
-    </select>
-
-
--->
-<!-- <update id="updateuser">
-
-        update t_user set username=#{username},usertime=#{usertime},userdh=#{userdh},userdz=#{userdz}  where  userid=#{userid}
-
-     </update>
-
-
-    <select id="queuser" resultType="com.jk.model.User">
+    <select id="huixianUser" resultType="com.jk.model.User">
 
         select * from t_user where userid = #{userid}
 
-    </select>-->
+    </select>
+
+    <update id="updateUser" parameterType="com.jk.model.User">
+
+        update t_user set username=#{username},usertime=#{usertime},usersex=#{usersex},userage=#{userage}  where  userid = #{userid}
+
+    </update>
+
+    <select id="selectUserRole" resultType="com.jk.model.UserRole">
+
+        select  *  from t_user_role where userid = #{userid}
+
+    </select>
+
+    <delete id="deleteRole">
+        delete from t_role  where  roleid =#{roleid}
+    </delete>
+
+    <insert id="addRole"  parameterType="com.jk.model.Role">
+        insert into  t_role (rolename)
+        values(#{rolename})
+    </insert>
+
+    <select id="huixianRole" resultType="com.jk.model.Role">
+
+        select * from t_role where roleid = #{roleid}
+
+    </select>
+
+    <update id="updateRole" parameterType="com.jk.model.Role">
+
+        update t_role set rolename=#{rolename} where  roleid = #{roleid}
+
+    </update>
+
+    <select id="selectUserMenu" resultType="com.jk.model.Menu">
+
+        SELECT * from t_menu q where q.pid= #{pid} and  q.id  in  (
+        SELECT rq.rqid  from t_role_menu rq where rq.rid  in (
+        SELECT t1.urid  from t_user t,t_user_role t1  where t.userid =t1.userid) )
+    </select>
+
+    <delete id="deleteUserRole">
+        delete  from  t_user_role  where  userid = #{userid}
+    </delete>
+
+    <insert id="adduserrole"  parameterType="com.jk.model.UserRole">
+        insert into t_user_role (userid,roleid)
+        values(#{userid},#{roleid})
+    </insert>
+
+    <select id="selectRoleMenu" resultType="com.jk.model.Menu">
+
+        select * from t_menu
+
+    </select>
+
+    <select id="queryquands" resultType="com.jk.model.RoleMenu">
+        select *  from  t_role_menu where  rid=#{roleid}
+    </select>
+
+    <delete id="deleteRoleMenu">
+        delete  from  t_role_menu  where  rid = #{roleid}
+    </delete>
+
+    <insert id="addRoleMenu"  parameterType="com.jk.model.UserRole">
+        insert into t_role_menu (rid,qid)
+        values(#{rid},#{qid})
+    </insert>
+
+    <select id="queryPeople" resultType="com.jk.model.People">
+        select *  from  t_people
+    </select>
 </mapper>
