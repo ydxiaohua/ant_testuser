@@ -50,16 +50,14 @@
       </if>
 
     </select>
- <!-- <select  id="listuser" resultType="com.jk.model.User">
-     select  *  from  t_user
-  </select>
 
-  <delete id="deleteXin">
-        delete from xinwen  where  xid =#{xid}
-    </delete>
 
-   <update id="updateuser">
-        update t_user set username=#{username},usertime=#{usertime},userdh=#{userdh},userdz=#{userdz}  where  userid=#{userid}
-    </update>
--->
+
+
+
+
+ <insert id="addpeople" parameterType="com.jk.model.Registrationcentre">
+    INSERT INTO t_baouser VALUES(#{baouserid},#{baousername},#{baousersex},#{baouserphone},#{baouserqq},#{baouserweixin},#{baousermaxxl},#{baousergraduatedate},#{presentpay},#{presentstatus},#{yncontcat})
+ </insert>
+
 </mapper>

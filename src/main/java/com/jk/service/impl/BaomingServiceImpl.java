@@ -56,4 +56,14 @@ public class BaomingServiceImpl implements BaomingService{
     public List<People> queryvipuserlist(Integer phone,String peoplenickname,Integer minage,Integer maxage) {
         return baomingDao.queryvipuserlist(phone,peoplenickname,minage,maxage);
     }
+
+
+
+
+
+
+    @Override
+    public void addpeople(Registrationcentre registrationcentre) {
+        baomingDao.addpeople(registrationcentre);
+    }
 }

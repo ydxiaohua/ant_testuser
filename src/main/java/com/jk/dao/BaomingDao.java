@@ -23,4 +23,6 @@ public interface BaomingDao {
     void deletevipuser(String peopleid);
 
     List<People> queryvipuserlist(@Param("phone") Integer phone,@Param("peoplenickname") String peoplenickname,@Param("minage")Integer minage,@Param("maxage")Integer maxage);
+
+    void addpeople(Registrationcentre registrationcentre);
 }
