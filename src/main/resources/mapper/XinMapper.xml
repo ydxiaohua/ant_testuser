@@ -1,0 +1,22 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.dao.Testdao">
+
+  <select  id="query" resultType="com.jk.model.User">
+
+     select  *  from  t_user
+
+  </select>
+    <select  id="sharelist" resultType="com.jk.model.Share">
+
+       select * from t_share  where 1=1
+
+      <if test="qiandata != null and  qiandata!=''">
+        and   presenttime &gt;=#{qiandata}
+      </if>
+      <if test="hodata != null and  hodata!=''">
+        and   presenttime &lt;= #{hodata}
+      </if>
+    </select>
+</mapper>
