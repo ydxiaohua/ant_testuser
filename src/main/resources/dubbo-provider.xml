@@ -21,21 +21,21 @@
 
 
     <!-- 声明需要暴露的服务接口 myService要和下面id保持一致-->
-    <dubbo:service interface="com.jk.service.UserService" ref="myService" />
+
     <dubbo:service interface="com.jk.service.CourseService" ref="zhangxing" timeout="120000"/>
 
+    <dubbo:service interface="com.jk.service.BaomingService" ref="twlmyService" timeout="1000000"/>
+
+
+
     <!-- 和本地bean一样实现服务 -->
-    <bean id="myService" class="com.jk.service.impl.UserServiceImpl" />
+
     <bean id="zhangxing" class="com.jk.service.impl.CourseServiceImpl" />
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.jk.service.BaomingService"
-                   ref="twlmyService" timeout="1000000"/>
-    <dubbo:service interface="com.jk.service.UserService"
-                   ref="twoService" timeout="1000000"/>
-    <!-- 和本地bean一样实现服务 -->
+
     <bean id="twlmyService" class="com.jk.service.impl.BaomingServiceImpl" />
-    <bean id="twoService" class="com.jk.service.impl.UserServiceImpl" />
+
 
 
 </beans>
