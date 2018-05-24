@@ -6,9 +6,9 @@ import com.jk.model.Class;
 import java.util.List;
 
 
-/**
- * Created by wfyf.zx1520 on 2018/5/15.
- */
+
+ 
+
 
 public interface CourseDao {
     List<Teacher> queryteacher();
@@ -44,4 +44,10 @@ public interface CourseDao {
     void updatecourse(Course course);
 
     List<Video> queryvideo();
+
+    List<Teacher> queryshenhe();
+
+    void updatetongguo(String teacherid);
+
+    List<Teacher> queryshenheteacherid(String teacherid);
 }
