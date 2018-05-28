@@ -51,7 +51,7 @@
   </update>
  <!-- updatetongguo-->
 
-  <update id="updateteacher">
+  <update id="updatetongguo">
 
     update t_teacher set  teacherstate=2  where  teacherid=#{teacherid}
 
