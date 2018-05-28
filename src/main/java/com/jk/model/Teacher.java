@@ -11,7 +11,24 @@ public class  Teacher implements Serializable{
     private  int   teacherid;
     private  String teachername;
     private String  teacherdate;
+    private Integer teacherstate;
+    private String  teachernote;
 
+    public Integer getTeacherstate() {
+        return teacherstate;
+    }
+
+    public void setTeacherstate(Integer teacherstate) {
+        this.teacherstate = teacherstate;
+    }
+
+    public String getTeachernote() {
+        return teachernote;
+    }
+
+    public void setTeachernote(String teachernote) {
+        this.teachernote = teachernote;
+    }
 
     public int getTeacherid() {
         return teacherid;
@@ -43,6 +60,8 @@ public class  Teacher implements Serializable{
                 "teacherid=" + teacherid +
                 ", teachername='" + teachername + '\'' +
                 ", teacherdate='" + teacherdate + '\'' +
+                ", teacherstate=" + teacherstate +
+                ", teachernote='" + teachernote + '\'' +
                 '}';
     }
 }

@@ -105,5 +105,20 @@ public class CourseServiceImpl implements CourseService {
         return courseDao.queryvideo();
     }
 
+    @Override
+    public List<Teacher> queryshenhe() {
+        return courseDao.queryshenhe();
+    }
+
+    @Override
+    public void updatetongguo(String teacherid) {
+        courseDao.updatetongguo(teacherid);
+    }
+
+    @Override
+    public List<Teacher> queryshenheteacherid(String teacherid) {
+        return courseDao.queryshenheteacherid(teacherid);
+    }
+
 
 }

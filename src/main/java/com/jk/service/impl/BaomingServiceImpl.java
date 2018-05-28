@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class BaomingServiceImpl implements BaomingService{
+
     @Autowired
     private BaomingDao baomingDao;
 
@@ -23,6 +24,7 @@ public class BaomingServiceImpl implements BaomingService{
 
     @Override
     public List<Registrationcentre> querybaolist() {
+
         return baomingDao.querybaolist();
     }
 
