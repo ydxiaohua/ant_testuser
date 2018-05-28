@@ -9,13 +9,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by ASUS on 2018/5/15.
- */
 @Service
 public class BaomingServiceImpl implements BaomingService{
     @Autowired
     private BaomingDao baomingDao;
+
+
 
     @Override
     public void addBaoUser() {
@@ -65,5 +64,10 @@ public class BaomingServiceImpl implements BaomingService{
     @Override
     public void addpeople(Registrationcentre registrationcentre) {
         baomingDao.addpeople(registrationcentre);
+    }
+
+    @Override
+    public void updateVIP(Integer peopleid) {
+        baomingDao.updateVIP(peopleid);
     }
 }
