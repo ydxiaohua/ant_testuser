@@ -1,0 +1,92 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.dao.IndexDao">
+
+    <select  id="TuiJianCourse" resultType="com.jk.model.Course">
+
+        SELECT  *  FROM t_course a ORDER BY a.lookcode DESC LIMIT 0,4
+
+    </select>
+
+
+    <select  id="JingXuanCourse" resultType="com.jk.model.Course">
+
+        SELECT  *  FROM t_course a where ynjingpin=1  LIMIT 0,8
+
+    </select>
+
+    <select  id="NewCourse" resultType="com.jk.model.Course">
+
+        SELECT * from t_course a ORDER BY a.coursedate desc LIMIT 0,8
+
+    </select>
+
+    <select  id="AllCourse" resultType="com.jk.model.Course">
+
+        SELECT * from t_course a ORDER BY a.downcode desc LIMIT 0,8
+
+    </select>
+
+    <select  id="queryImg" resultType="com.jk.model.Img">
+
+        SELECT  *  from  t_img
+
+    </select>
+
+    <insert id="addImg"  parameterType="com.jk.model.Img">
+        insert into  t_img (img,imgdate)
+        values(#{img},#{imgdate})
+    </insert>
+
+    <select  id="queryCourseAllOrId" resultType="com.jk.model.Course">
+
+        SELECT  *  from t_course a,t_teacher b where a.teacherid=b.teacherid  and  a.courseid=#{courseid}
+
+    </select>
+
+    <select  id="queryDagang" resultType="com.jk.model.DaGang">
+
+        SELECT  *  from  t_dagang a  where   a.courseid=#{courseid}
+
+    </select>
+
+    <select id="queryCoursePingCount" resultType="long">
+
+        SELECT  count(*) from  t_comment a where a.courseid=#{courseid}
+
+    </select>
+
+    <select id="queryCoursePing" resultType="java.util.Map">
+        SELECT  * from  t_comment a,t_people b  where   a.peopleid=b.peopleid   and  a.courseid=#{courseid}
+
+        limit #{start},#{rows}
+    </select>
+
+
+    <insert id="addHuiFuPing"  parameterType="com.jk.model.Comment">
+        insert into  t_comment (comcontent,comdate,comcode,courseid,peopleid)
+        values(#{comcontent},#{comdate},#{comcode},#{courseid},#{peopleid})
+    </insert>
+
+    <update id="updateLookcode">
+
+        update   t_course   set  lookcode=lookcode+1  where courseid=#{courseid}
+
+    </update>
+
+    <select id="queryNoOrYesPing" resultType="com.jk.model.PingZan">
+        select * from  t_ping_zan  where comid=#{comid} and peopleid=#{peopleid}
+    </select>
+
+    <insert id="addPingZan"  parameterType="com.jk.model.PingZan">
+        insert into  t_ping_zan  (comid,peopleid)
+        values(#{comid},#{peopleid})
+    </insert>
+
+    <update id="PingLunDianZan">
+
+        update   t_comment   set  comcode=comcode+1  where comid=#{comid}
+
+    </update>
+</mapper>
