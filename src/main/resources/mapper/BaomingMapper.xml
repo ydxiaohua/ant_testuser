@@ -3,10 +3,6 @@
 
 <mapper namespace="com.jk.dao.BaomingDao">
 
-   <!-- <insert id="addBaoUser" parameterType="com.jk.model.Registrationcentre">
-      INSERT INTO t_baouser VALUES(${BAOUSERID},${BAOUSERNAME},${BAOUSERSEX},${BAOUSERPHONE},${BAOUSERQQ},${BAOUSERWEIXIN},${BAOUSERMAXXL},${BAOUSERGRADUATEDATE},${PRESENTPAY},${PRESENTSTATUS},${YNCONTCAT})
-    </insert>-->
-
     <select id="querybaolist" resultType="com.jk.model.Registrationcentre">
         SELECT * FROM t_baouser
     </select>
@@ -50,16 +46,17 @@
       </if>
 
     </select>
- <!-- <select  id="listuser" resultType="com.jk.model.User">
-     select  *  from  t_user
-  </select>
 
-  <delete id="deleteXin">
-        delete from xinwen  where  xid =#{xid}
-    </delete>
 
-   <update id="updateuser">
-        update t_user set username=#{username},usertime=#{usertime},userdh=#{userdh},userdz=#{userdz}  where  userid=#{userid}
+
+
+
+     <insert id="addpeople" parameterType="com.jk.model.Registrationcentre">
+        INSERT INTO t_baouser VALUES(#{baouserid},#{baousername},#{baousersex},#{baouserphone},#{baouserqq},#{baouserweixin},#{baousermaxxl},#{baousergraduatedate},#{presentpay},#{presentstatus},#{yncontcat})
+     </insert>
+
+
+    <update id="updateVIP">
+        update t_people set ynvip = 2 where peopleid=#{peopleid}
     </update>
--->
 </mapper>

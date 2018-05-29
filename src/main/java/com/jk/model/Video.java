@@ -15,11 +15,22 @@ public class Video implements Serializable {
     private  Integer dgid;
     private  String  vdate;
     private  Integer userid;
+    private  String  videotv;
+
 
     // 业务字段
     private String  dgname;
     private String  username;
     private String  coursename;
+
+
+    public String getVideotv() {
+        return videotv;
+    }
+
+    public void setVideotv(String videotv) {
+        this.videotv = videotv;
+    }
 
     public String getCoursename() {
         return coursename;
@@ -102,6 +113,10 @@ public class Video implements Serializable {
                 ", dgid=" + dgid +
                 ", vdate='" + vdate + '\'' +
                 ", userid=" + userid +
+                ", videotv='" + videotv + '\'' +
+                ", dgname='" + dgname + '\'' +
+                ", username='" + username + '\'' +
+                ", coursename='" + coursename + '\'' +
                 '}';
     }
 }

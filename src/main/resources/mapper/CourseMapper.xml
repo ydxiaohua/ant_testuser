@@ -9,6 +9,11 @@
     select  *  from  t_teacher
 
   </select>
+  <select  id="queryshenhe" resultType="com.jk.model.Teacher">
+
+    select  *  from  t_teacher  where teacherstate=1
+
+  </select>
 
 
 
@@ -29,6 +34,13 @@
 
   </select>
 
+  <select id="queryshenheteacherid" resultType="com.jk.model.Teacher">
+
+    select * from t_teacher  where   teacherid=#{teacherid}
+
+  </select>
+  <!--queryshenheteacherid-->
+
 
 
 
@@ -37,9 +49,13 @@
     update t_teacher set teachername=#{teachername},teacherdate=#{teacherdate}  where  teacherid=#{teacherid}
 
   </update>
+ <!-- updatetongguo-->
 
+  <update id="updatetongguo">
 
+    update t_teacher set  teacherstate=2  where  teacherid=#{teacherid}
 
+  </update>
 
 
   <select  id="querydagang" resultType="com.jk.model.DaGang">

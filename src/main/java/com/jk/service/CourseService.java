@@ -5,9 +5,8 @@ import com.jk.model.Class;
 
 import java.util.List;
 
-/**
- * Created by wfyf.zx1520 on 2018/5/15.
- */
+
+
 public interface CourseService {
 
 
@@ -37,4 +36,7 @@ public interface CourseService {
 
 
     List<Video> queryvideo();
+    List<Teacher> queryshenhe();
+    void updatetongguo(String teacherid);
+    List<Teacher> queryshenheteacherid(String teacherid);
 }
