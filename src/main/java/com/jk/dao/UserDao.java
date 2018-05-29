@@ -50,4 +50,20 @@ public interface UserDao {
     void addRoleMenu(RoleMenu rq);
 
     List<People> queryPeople();
+
+    List<Menu> queryquanxian();
+
+    void deletequanxian(Integer id);
+
+    void addquanxian(Menu menu);
+
+    List<RoleQuan> selectyy(Integer id);
+
+    Menu selectquanxianid(Integer id);
+
+    void updateqx(Menu menu);
+
+    List yzmm(@Param("username") String username,@Param("userpass") String userpass);
+
+    void xiugaimm(@Param("username") String username,@Param("xinuserpass") String xinuserpass);
 }

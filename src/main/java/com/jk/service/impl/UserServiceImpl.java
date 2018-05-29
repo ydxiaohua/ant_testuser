@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
 
 
-    private void recursionMenu(List<Menu> firstMenu, Integer userid) {
+    public void recursionMenu(List<Menu> firstMenu, Integer userid) {
 
         for (Menu menu : firstMenu) {
 
@@ -179,6 +179,53 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<People> queryPeople() {
         return userDao.queryPeople();
+    }
+
+    @Override
+    public List<Menu> queryquanxian() {
+        return userDao.queryquanxian();
+    }
+
+    @Override
+    public String deletequanxian(Integer id) {
+        List<RoleQuan> list = userDao.selectyy(id);
+        String asd = "";
+        if(list.size()>0){
+            asd="该权限有角色所拥有，不能删除！";
+            return asd;
+        }else{
+            userDao.deletequanxian(id);
+            asd="删除成功！";
+            return asd;
+        }
+    }
+
+    @Override
+    public void addquanxian(Menu menu) {
+        userDao.addquanxian(menu);
+    }
+
+    @Override
+    public Menu selectquanxianid(Integer id) {
+        return userDao.selectquanxianid(id);
+    }
+
+    @Override
+    public void updateqx(Menu menu) {
+        userDao.updateqx(menu);
+    }
+
+    @Override
+    public String yzmm(User user) {
+        List list = userDao.yzmm(user.getUsername(),user.getUserpass());
+        String aa = "";
+        if(list.size()>0){
+            userDao.xiugaimm(user.getUsername(),user.getXinuserpass());
+            aa = "修改成功！";
+        }else{
+            aa = "密码错误！";
+        }
+        return aa;
     }
 
 

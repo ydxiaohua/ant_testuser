@@ -120,4 +120,36 @@ SELECT * from t_menu q where q.pid=#{pid} and  q.id  in  (
     <select id="queryPeople" resultType="com.jk.model.People">
         select *  from  t_people
     </select>
+
+
+    <select id="queryquanxian" resultType="com.jk.model.Menu">
+        select * FROM t_menu
+    </select>
+    <delete id="deletequanxian">
+        delete from t_menu where id = #{id}
+    </delete>
+
+    <insert id="addquanxian" parameterType="com.jk.model.Menu">
+        INSERT INTO t_menu(id,pid,url,text) VALUES (#{id},#{pid},#{url},#{text})
+    </insert>
+
+    <select id="selectyy" resultType="com.jk.model.RoleQuan">
+        select * FROM  t_role_menu where qid = #{id}
+    </select>
+
+    <select id="selectquanxianid" resultType="com.jk.model.Menu">
+        select * FROM  t_menu where id = #{id}
+    </select>
+
+    <update id="updateqx">
+        update t_menu set text = #{text} where id = #{id}
+    </update>
+
+    <select id="yzmm" resultType="com.jk.model.User">
+        select * from t_user where username = ${username} and userpass = #{userpass}
+    </select>
+
+    <update id="xiugaimm">
+        update t_user set userpass = #{xinuserpass} where username = #{username}
+    </update>
 </mapper>
