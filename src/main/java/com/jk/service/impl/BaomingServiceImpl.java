@@ -15,6 +15,8 @@ public class BaomingServiceImpl implements BaomingService{
     @Autowired
     private BaomingDao baomingDao;
 
+
+
     @Override
     public void addBaoUser() {
         baomingDao.addBaoUser();
@@ -64,5 +66,10 @@ public class BaomingServiceImpl implements BaomingService{
     @Override
     public void addpeople(Registrationcentre registrationcentre) {
         baomingDao.addpeople(registrationcentre);
+    }
+
+    @Override
+    public void updateVIP(Integer peopleid) {
+        baomingDao.updateVIP(peopleid);
     }
 }
