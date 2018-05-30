@@ -43,4 +43,18 @@ insert into  t_liu  values (#{liuid},#{syllabusid},#{shulian})
 
         insert into  t_people  values (#{peopleid},#{email},#{phone},#{peoplepass},#{ynvip})
     </insert>
+
+  <select  id="listuser" resultType="com.jk.model.People">
+
+    select  *  from t_people  where peopleid=#{userid}
+  </select>
+    <update id="uolistuser"  parameterType="com.jk.model.People">
+
+     UPDATE   t_people  SET    peoplenickname=#{peoplenickname}, peoplesex=#{peoplesex} ,peopleage=#{peopleage} WHERE  peopleid=#{peopleid}
+    </update>
+    <update id="upuserpass" parameterType="com.jk.model.People">
+
+        UPDATE   t_people  SET  peoplepass=#{peoplepass} WHERE  peopleid=#{peopleid}
+    </update>
+
 </mapper>

@@ -88,7 +88,6 @@ public class EchartsServiceImpl implements EchartsService {
         People user=echartsdao.querylogin(username);
         if(user!=null){
             if(userpass.equals(user.getPeoplepass())){
-
                 map.put("user", user);
                 login="success";
             }else{
@@ -106,6 +105,7 @@ public class EchartsServiceImpl implements EchartsService {
     @Override
     public Map<String, Object> register(String username, String password, String phoe) {
         Map<String, Object> map = new HashMap<String, Object>();
+
         String   login= "";
         List<People> user=echartsdao.register(username,phoe);
         People   people ;
@@ -124,5 +124,34 @@ public class EchartsServiceImpl implements EchartsService {
         }
         map.put("login",login);
         return map;
+    }
+
+    @Override
+    public List<People> listuser(Integer userid) {
+
+        List<People>  people =echartsdao.listuser(userid);
+
+        return people;
+    }
+
+    @Override
+    public String uolistuser(Integer  peopleid,String  peoplenickname,Integer  peoplesex,Integer   peopleage) {
+
+          String  list="ok";
+           People  people  =new  People();
+          people.setPeopleage(peopleage);
+          people.setPeoplenickname(peoplenickname);
+          people.setPeopleid(peopleid);
+          people.setPeoplesex(peoplesex);
+          echartsdao.uolistuser(people);
+          return list;
+    }
+
+    @Override
+    public void upuserpass(String peoplepass, Integer peopleid) {
+        People  people  =new  People();
+        people.setPeopleid(peopleid);
+        people.setPeoplepass(peoplepass);
+        echartsdao.upuserpass(people);
     }
 }

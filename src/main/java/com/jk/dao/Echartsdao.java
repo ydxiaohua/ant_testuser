@@ -21,6 +21,7 @@ public interface Echartsdao {
     List<Liu> chaxliuyue(@Param("name") String  name);
 
     void addliulist(Liu liu);
+
     List<Xia> chaxxiaxia();
 
     List<Xia> zhexianxia(String name);
@@ -31,4 +32,9 @@ public interface Echartsdao {
 
     void addregister(People people);
 
+    List<People> listuser(@Param("userid")Integer userid);
+
+    void uolistuser(People  people);
+
+    void upuserpass(People  people);
 }
