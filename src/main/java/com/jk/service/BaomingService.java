@@ -26,7 +26,7 @@ public interface BaomingService {
 
 
 
-    void addpeople(Registrationcentre registrationcentre);
+    String addpeople(Registrationcentre registrationcentre);
 
     void updateVIP(Integer peopleid);
 

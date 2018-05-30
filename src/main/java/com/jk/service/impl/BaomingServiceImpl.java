@@ -64,8 +64,15 @@ public class BaomingServiceImpl implements BaomingService{
 
 
     @Override
-    public void addpeople(Registrationcentre registrationcentre) {
-        baomingDao.addpeople(registrationcentre);
+    public String addpeople(Registrationcentre registrationcentre) {
+        String zz = "";
+        if(registrationcentre.getBaousername()=="" | registrationcentre.getBaousersex()==null | registrationcentre.getBaouserphone()=="" | registrationcentre.getBaouserweixin()=="" | registrationcentre.getBaousermaxxl()=="" | registrationcentre.getBaousergraduatedate()=="" | registrationcentre.getPresentpay()==null | registrationcentre.getPresentstatus()==null){
+            zz = "aaaa";
+        }else{
+            baomingDao.addpeople(registrationcentre);
+            zz = "bbbb";
+        }
+        return zz;
     }
 
     @Override
