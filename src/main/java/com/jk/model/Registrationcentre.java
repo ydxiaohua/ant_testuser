@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Registrationcentre implements Serializable {
     private static final long serialVersionUID = 7306508843024901955L;
 
-    @Id
+
     private Integer baouserid;
     private String baousername;
     private Integer baousersex;

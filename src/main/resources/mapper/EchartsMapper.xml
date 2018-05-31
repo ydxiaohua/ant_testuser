@@ -22,5 +22,39 @@ select   substring(syllabusid,6,2) as syllabusid ,SUM(shulian) as shulian  from 
 
 insert into  t_liu  values (#{liuid},#{syllabusid},#{shulian})
     </insert>
+    <select  id="chaxxiaxia" resultType="com.jk.model.Xia">
+
+        select id , substring(xiadata,1,4) as xiadata ,SUM(shulian) as shulian   from  t_xia  GROUP BY   substring(xiadata,1,4)
+
+    </select>
+    <select  id="zhexianxia" resultType="com.jk.model.Xia">
+
+        select   substring(xiadata,6,2) as xiadata ,SUM(shulian) as shulian  from t_xia  where  substring(xiadata,1,4)=#{name} GROUP BY   substring(xiadata,6,2)
+    </select>
+    <select  id="querylogin" resultType="com.jk.model.People">
+
+        select  *  from t_people  where  email=#{name} or phone=#{name}
+    </select>
+    <select  id="register" resultType="com.jk.model.People">
+
+        select  *  from t_people  where  email=#{name} or phone=#{phoe}
+    </select>
+    <insert id="addregister"  parameterType="com.jk.model.People">
+
+        insert into  t_people  values (#{peopleid},#{email},#{phone},#{peoplepass},#{ynvip})
+    </insert>
+
+  <select  id="listuser" resultType="com.jk.model.People">
+
+    select  *  from t_people  where peopleid=#{userid}
+  </select>
+    <update id="uolistuser"  parameterType="com.jk.model.People">
+
+     UPDATE   t_people  SET    peoplenickname=#{peoplenickname}, peoplesex=#{peoplesex} ,peopleage=#{peopleage} WHERE  peopleid=#{peopleid}
+    </update>
+    <update id="upuserpass" parameterType="com.jk.model.People">
+
+        UPDATE   t_people  SET  peoplepass=#{peoplepass} WHERE  peopleid=#{peopleid}
+    </update>
 
 </mapper>
