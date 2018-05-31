@@ -57,6 +57,22 @@
 
 
     <update id="updateVIP">
-        update t_people set ynvip = 2 where peopleid=#{peopleid}
+        update t_people set ynvip = 2 , vipendtime = #{shijian} where peopleid=#{peopleid}
+    </update>
+
+    <select id="lookynVIP" resultType="com.jk.model.People">
+        select * from t_people where peopleid=#{peopleid} and ynvip = 2
+    </select>
+
+    <select id="daoqi" resultType="com.jk.model.People">
+        select * from t_people where peopleid=#{peopleid}
+    </select>
+
+    <select id="guoqi" resultType="com.jk.model.People">
+        select * from t_people where peopleid=#{peopleid}
+    </select>
+
+    <update id="updatedaoqi">
+        update t_people set ynvip = 1  where peopleid=#{peopleid}
     </update>
 </mapper>
