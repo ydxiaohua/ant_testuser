@@ -41,13 +41,13 @@
 
     <select  id="queryCourseAllOrId" resultType="com.jk.model.Course">
 
-        SELECT  *  from t_course a,t_teacher b where a.teacherid=b.teacherid  and  a.courseid=#{courseid}
+        SELECT  *  from t_course a,t_teacher b,t_video c,t_dagang d where a.teacherid=b.teacherid and a.courseid=c.courseid  and c.dgid=d.dgid and c.dgid=1  and  a.courseid=#{courseid}
 
     </select>
 
     <select  id="queryDagang" resultType="com.jk.model.DaGang">
 
-        SELECT  *  from  t_dagang a  where   a.courseid=#{courseid}
+        SELECT  a.*  from  t_dagang a,t_video b  where  a.dgid=b.dgid  and  a.courseid=#{courseid}
 
     </select>
 
@@ -58,7 +58,7 @@
     </select>
 
     <select id="queryCoursePing" resultType="java.util.Map">
-        SELECT  * from  t_comment a,t_people b  where   a.peopleid=b.peopleid   and  a.courseid=#{courseid}
+        SELECT  * from  t_comment a,t_people b  where   a.peopleid=b.peopleid   and  a.courseid=#{courseid} ORDER BY a.comdate desc
 
         limit #{start},#{rows}
     </select>
@@ -89,4 +89,10 @@
         update   t_comment   set  comcode=comcode+1  where comid=#{comid}
 
     </update>
+
+    <select  id="queryDGinfo" resultType="com.jk.model.Course">
+
+        SELECT  *  from t_course a,t_teacher b,t_video c,t_dagang d where a.teacherid=b.teacherid and a.courseid=c.courseid  and c.dgid=d.dgid and c.dgid=#{dgid}  and  a.courseid=#{courseid}
+
+    </select>
 </mapper>

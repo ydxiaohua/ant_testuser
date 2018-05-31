@@ -41,6 +41,9 @@ public class Course implements Serializable{
 
     private String   classname;
     private String  teachername;
+    private String videotv;
+    private Integer dgid;
+    private Integer xiaojie;
 
     public String getClassname() {
         return classname;
@@ -178,6 +181,29 @@ public class Course implements Serializable{
         this.ynjingpin = ynjingpin;
     }
 
+    public String getVideotv() {
+        return videotv;
+    }
+
+    public void setVideotv(String videotv) {
+        this.videotv = videotv;
+    }
+
+    public Integer getDgid() {
+        return dgid;
+    }
+
+    public void setDgid(Integer dgid) {
+        this.dgid = dgid;
+    }
+
+    public Integer getXiaojie() {
+        return xiaojie;
+    }
+
+    public void setXiaojie(Integer xiaojie) {
+        this.xiaojie = xiaojie;
+    }
 
     @Override
     public String toString() {
@@ -197,7 +223,11 @@ public class Course implements Serializable{
                 ", lunbotustate='" + lunbotustate + '\'' +
                 ", tuiguangphoto='" + tuiguangphoto + '\'' +
                 ", ynjingpin=" + ynjingpin +
+                ", classname='" + classname + '\'' +
+                ", teachername='" + teachername + '\'' +
+                ", videotv='" + videotv + '\'' +
+                ", dgid=" + dgid +
+                ", xiaojie=" + xiaojie +
                 '}';
     }
-
 }

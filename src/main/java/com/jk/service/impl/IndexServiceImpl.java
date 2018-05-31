@@ -52,7 +52,9 @@ public class IndexServiceImpl implements IndexService{
 
     @Override
     public Course queryCourseAllOrId(Integer courseid) {
-        return indexDao.queryCourseAllOrId(courseid);
+        Course course = indexDao.queryCourseAllOrId(courseid);
+        System.out.println(course);
+        return course;
     }
 
     @Override
@@ -69,6 +71,7 @@ public class IndexServiceImpl implements IndexService{
     public Map<String, Object> queryCoursePing(int page, int rows, int courseid) {
         long tot = indexDao.queryCoursePingCount(courseid);
         List<Comment> uss = indexDao.queryCoursePing((page-1)*rows,rows,courseid);
+
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("total", tot);
         map.put("rows", uss);
@@ -93,6 +96,11 @@ public class IndexServiceImpl implements IndexService{
     @Override
     public void addPingZan(Integer comid, Integer peopleid) {
         indexDao.addPingZan(comid,peopleid);
+    }
+
+    @Override
+    public Course queryDGinfo(Integer courseid, Integer dgid) {
+        return indexDao.queryDGinfo(courseid,dgid);
     }
 
 

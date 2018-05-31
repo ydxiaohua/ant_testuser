@@ -38,4 +38,6 @@ public interface IndexService {
 
     void addPingZan(Integer comid, Integer peopleid);
 
+    Course queryDGinfo(Integer courseid, Integer dgid);
+
 }

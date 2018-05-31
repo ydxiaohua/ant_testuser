@@ -39,4 +39,6 @@ public interface IndexDao {
     void addPingZan(@Param("comid")Integer comid, @Param("peopleid")Integer peopleid);
 
     void PingLunDianZan(Integer comid);
+
+    Course queryDGinfo(@Param("courseid")Integer courseid, @Param("dgid")Integer dgid);
 }
