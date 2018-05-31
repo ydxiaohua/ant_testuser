@@ -27,5 +27,13 @@ public interface BaomingDao {
 
     void addpeople(Registrationcentre registrationcentre);
 
-    void updateVIP(Integer peopleid);
+    void updateVIP(@Param("shijian")String shijian,@Param("peopleid")Integer peopleid);
+
+    List lookynVIP(Integer peopleid);
+
+    People daoqi(Integer peopleid);
+
+    People guoqi(Integer peopleid);
+
+    void updatedaoqi(Integer peopleid);
 }

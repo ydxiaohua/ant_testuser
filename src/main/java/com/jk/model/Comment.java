@@ -2,19 +2,24 @@ package com.jk.model;
 
 import java.io.Serializable;
 
-/**
- * Created by 世龙同学 on 2018/5/28.
- */
-public class Comment implements Serializable{
+public class Comment implements Serializable {
+    private static final long serialVersionUID = -8003500683852308690L;
 
-    private Integer comid;
-    private String comcontent;
-    private String comdate;
-    private Integer comcode;
-    private Integer courseid;
-    private Integer peopleid;
-    private String email;
+    private Integer  comid;
+    private String   comcontent;
+    private String   comdate;
+    private Integer  comcode;
+    private Integer  courseid;
+    private Integer  peopleid;
 
+
+    public Integer getComid() {
+        return comid;
+    }
+
+    public void setComid(Integer comid) {
+        this.comid = comid;
+    }
 
     public String getComcontent() {
         return comcontent;
@@ -48,28 +53,12 @@ public class Comment implements Serializable{
         this.courseid = courseid;
     }
 
-    public Integer getComid() {
-        return comid;
-    }
-
-    public void setComid(Integer comid) {
-        this.comid = comid;
-    }
-
     public Integer getPeopleid() {
         return peopleid;
     }
 
     public void setPeopleid(Integer peopleid) {
         this.peopleid = peopleid;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     @Override
@@ -81,7 +70,6 @@ public class Comment implements Serializable{
                 ", comcode=" + comcode +
                 ", courseid=" + courseid +
                 ", peopleid=" + peopleid +
-                ", email='" + email + '\'' +
                 '}';
     }
 }
