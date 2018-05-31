@@ -34,12 +34,8 @@
 
   </select>
 
-  <select id="queryshenheteacherid" resultType="com.jk.model.Teacher">
 
-    select * from t_teacher  where   teacherid=#{teacherid}
 
-  </select>
-  <!--queryshenheteacherid-->
 
 
 
@@ -51,7 +47,7 @@
   </update>
  <!-- updatetongguo-->
 
-  <update id="updateteacher">
+  <update id="updatetongguo">
 
     update t_teacher set  teacherstate=2  where  teacherid=#{teacherid}
 
@@ -69,7 +65,7 @@
 
 
   <insert id="adddagang">
-    insert into t_dagang values (dgid,#{dgname},#{uid},#{pdate},#{ynvip},#{xiaojie})
+    insert into t_dagang values (dgid,#{dgname},#{uid},#{pdate},#{ynvip},#{xiaojie},#{courseid})
   </insert>
 
 
@@ -86,15 +82,70 @@
 
 
 
+
   <update id="updatedagang">
 
-  update t_dagang set dgname=#{dgname},uid=#{uid},pdate=#{pdate},ynvip=#{ynvip},xiaojie=#{xiaojie}  where  dgid=#{dgid}
+  update t_dagang set dgname=#{dgname},uid=#{uid},pdate=#{pdate},ynvip=#{ynvip},xiaojie=#{xiaojie},courseid=#{courseid}  where  dgid=#{dgid}
 
 </update>
 
   <select  id="querycourse" resultType="com.jk.model.Course">
 
     select t1.*,t2.classname classname,t3.teachername teachername from t_course t1, t_class t2, t_teacher t3 where t1.classid= t2.classid and t1.teacherid = t3.teacherid
+
+    <if test="coursename != null and coursename != '' ">
+      and t1.coursename like'%${coursename}%'
+    </if>
+
+    <if test="classid != null and classid != '' ">
+      and t1.classid =#{classid}
+    </if>
+    <if test="minprice != null and minprice != '' ">
+      and t1.yuanprice   &gt;=  #{minprice}
+    </if>
+    <if test="maxprice != null and maxprice != '' ">
+      and t1.yuanprice   &lt;=  #{maxprice}
+    </if>
+    <if test="ynvip != null and ynvip != '' ">
+      and t1.ynvip  =  #{ynvip}
+    </if>
+
+
+
+  </select>
+
+
+
+  <select  id="queryteachertj" resultType="com.jk.model.Course">
+
+    select * from t_course where teacherid=#{teacherid}
+
+  </select>
+  <select  id="querybanxing" resultType="com.jk.model.Course">
+
+    select * from t_course where classid=#{classid}
+
+  </select>
+  <select  id="mianfei" resultType="com.jk.model.Course">
+
+    select * from t_course where ynvip=1
+
+  </select>
+
+  <select  id="huiyuan" resultType="com.jk.model.Course">
+
+    select * from t_course where ynvip=2
+
+  </select>
+
+  <select  id="querycoursezuixing" resultType="com.jk.model.Course">
+
+    select * from t_course  order by courseid  desc
+
+  </select>
+  <select  id="querycourseguanzhudu" resultType="com.jk.model.Course">
+
+    select * from t_course  order by lookcode  desc
 
   </select>
 
@@ -123,6 +174,12 @@
 
   </select>
 
+  <update id="updatetuig">
+
+    update t_course set lunbotustate=2  where  courseid=#{courseid}
+
+  </update>
+
 
   <update id="updatecourse">
 
@@ -133,8 +190,20 @@
 
   <select  id="queryvideo" resultType="com.jk.model.Video">
 
-select v.*,c.coursename coursename,d.dgname dgname,u.username username  from t_video v, t_course c, t_dagang d,t_user u where v.courseid = c.courseid and v.dgid = d.dgid and v.userid = u.userid
+   select v.*,c.classname coursename,d.dgname dgname,u.username username  from t_video v, t_class c, t_dagang d,t_user u where v.courseid = c.classid and v.dgid = d.dgid and v.userid = u.userid
   </select>
+
+ <select id="queryshenheteacherid" resultType="com.jk.model.Teacher">
+
+    select * from t_teacher  where   teacherid=#{teacherid}
+
+  </select>
+
+
+
+  <insert id="addvideo">
+    insert into t_video values (vid,#{vname},#{courseid},#{dgid},#{vdate},#{userid},#{videotv})
+  </insert>
 
 
   <!--

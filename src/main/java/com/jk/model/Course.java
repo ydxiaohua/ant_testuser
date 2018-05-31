@@ -18,7 +18,7 @@ public class Course implements Serializable{
 
      private int yuanprice;         //原价
 
-     private int dazhe;             // 是否打折
+     private String  dazhe;             // 是否打折
 
      private String  jieshao;       //课程介绍
 
@@ -41,6 +41,24 @@ public class Course implements Serializable{
 
     private String   classname;
     private String  teachername;
+    private Integer    minprice;
+    private Integer     maxprice;
+
+    public Integer getMinprice() {
+        return minprice;
+    }
+
+    public void setMinprice(Integer minprice) {
+        this.minprice = minprice;
+    }
+
+    public Integer getMaxprice() {
+        return maxprice;
+    }
+
+    public void setMaxprice(Integer maxprice) {
+        this.maxprice = maxprice;
+    }
 
     public String getClassname() {
         return classname;
@@ -98,11 +116,11 @@ public class Course implements Serializable{
         this.yuanprice = yuanprice;
     }
 
-    public int getDazhe() {
+    public String getDazhe() {
         return dazhe;
     }
 
-    public void setDazhe(int dazhe) {
+    public void setDazhe(String dazhe) {
         this.dazhe = dazhe;
     }
 

@@ -25,13 +25,13 @@ public interface CourseService {
 
 
 
-    List<Course> querycourse();
+    List<Course> querycourse(String coursename,String classid,String minprice,String maxprice,String ynvip);
     List<Class> queryclass();
     void addcourse(Course course);
     void deletecourse(String courseid);
     Course querycourseid(String courseid);
     void updatecourse(Course course);
-
+    void updatetuig(String courseid);
 
 
 
@@ -39,4 +39,13 @@ public interface CourseService {
     List<Teacher> queryshenhe();
     void updatetongguo(String teacherid);
     List<Teacher> queryshenheteacherid(String teacherid);
+    void addvideo(Video video);
+
+
+    List<Course> queryteachertj(String teacherid);
+    List<Course> querybanxing(String classid);
+    List<Course> mianfei();
+    List<Course> huiyuan();
+    List<Course> querycoursezuixing();
+    List<Course> querycourseguanzhudu();
 }
