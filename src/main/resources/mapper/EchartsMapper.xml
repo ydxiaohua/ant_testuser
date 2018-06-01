@@ -37,11 +37,12 @@ insert into  t_liu  values (#{liuid},#{syllabusid},#{shulian})
     </select>
     <select  id="register" resultType="com.jk.model.People">
 
-        select  *  from t_people  where  email=#{name} or phone=#{phoe}
+        select  *  from  t_people  where  email=#{name} or phone=#{phoe}
+
     </select>
     <insert id="addregister"  parameterType="com.jk.model.People">
 
-        insert into  t_people  values (#{peopleid},#{email},#{phone},#{peoplepass},#{ynvip})
+        insert into  t_people (email,phone,peoplepass)  values (#{email},#{phone},#{peoplepass})
     </insert>
 
   <select  id="listuser" resultType="com.jk.model.People">

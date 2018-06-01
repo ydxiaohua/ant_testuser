@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Course implements Serializable{
 
     private static final long serialVersionUID = -7721867552181405919L;
-    private int courseid;          //主键id
+     private int courseid;          //主键id
 
      private int teacherid;         //讲师id
 
@@ -18,7 +18,7 @@ public class Course implements Serializable{
 
      private int yuanprice;         //原价
 
-     private String  dazhe;             // 是否打折
+     private  String  dazhe;             // 是否打折
 
      private String  jieshao;       //课程介绍
 
@@ -36,28 +36,35 @@ public class Course implements Serializable{
 
      private String  tuiguangphoto; //推广图片 oss服务器
 
+    private String  coursedate; //推广图片 oss服务器
+
      private int  ynjingpin;        //是否精品
 
+    private String showphoto;
 
+    //业务字段
     private String   classname;
     private String  teachername;
-    private Integer    minprice;
-    private Integer     maxprice;
+    private String videotv;
+    private Integer dgid;
+    private Integer xiaojie;
+    private Integer dgids;
 
-    public Integer getMinprice() {
-        return minprice;
+
+    public String getCoursedate() {
+        return coursedate;
     }
 
-    public void setMinprice(Integer minprice) {
-        this.minprice = minprice;
+    public void setCoursedate(String coursedate) {
+        this.coursedate = coursedate;
     }
 
-    public Integer getMaxprice() {
-        return maxprice;
+    public String getShowphoto() {
+        return showphoto;
     }
 
-    public void setMaxprice(Integer maxprice) {
-        this.maxprice = maxprice;
+    public void setShowphoto(String showphoto) {
+        this.showphoto = showphoto;
     }
 
     public String getClassname() {
@@ -196,6 +203,37 @@ public class Course implements Serializable{
         this.ynjingpin = ynjingpin;
     }
 
+    public String getVideotv() {
+        return videotv;
+    }
+
+    public void setVideotv(String videotv) {
+        this.videotv = videotv;
+    }
+
+    public Integer getDgid() {
+        return dgid;
+    }
+
+    public void setDgid(Integer dgid) {
+        this.dgid = dgid;
+    }
+
+    public Integer getXiaojie() {
+        return xiaojie;
+    }
+
+    public void setXiaojie(Integer xiaojie) {
+        this.xiaojie = xiaojie;
+    }
+
+    public Integer getDgids() {
+        return dgids;
+    }
+
+    public void setDgids(Integer dgids) {
+        this.dgids = dgids;
+    }
 
     @Override
     public String toString() {
@@ -205,7 +243,7 @@ public class Course implements Serializable{
                 ", coursename='" + coursename + '\'' +
                 ", xianprice=" + xianprice +
                 ", yuanprice=" + yuanprice +
-                ", dazhe=" + dazhe +
+                ", dazhe='" + dazhe + '\'' +
                 ", jieshao='" + jieshao + '\'' +
                 ", classid=" + classid +
                 ", ynvip=" + ynvip +
@@ -214,8 +252,15 @@ public class Course implements Serializable{
                 ", lookcode=" + lookcode +
                 ", lunbotustate='" + lunbotustate + '\'' +
                 ", tuiguangphoto='" + tuiguangphoto + '\'' +
+                ", coursedate='" + coursedate + '\'' +
                 ", ynjingpin=" + ynjingpin +
+                ", showphoto='" + showphoto + '\'' +
+                ", classname='" + classname + '\'' +
+                ", teachername='" + teachername + '\'' +
+                ", videotv='" + videotv + '\'' +
+                ", dgid=" + dgid +
+                ", xiaojie=" + xiaojie +
+                ", dgids=" + dgids +
                 '}';
     }
-
 }

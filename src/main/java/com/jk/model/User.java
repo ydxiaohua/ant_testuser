@@ -16,12 +16,15 @@ public class User implements Serializable{
 
     private   String   userpass;
 
-    private   String   ztid;
+    private   String   usersex;
 
-    private String xinuserpass;
+    private   String   usertime;
 
-   public static long getSerialVersionUID() {
-       return serialVersionUID;
+    private   String   userage;
+
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Integer getUserid() {
@@ -48,20 +51,28 @@ public class User implements Serializable{
         this.userpass = userpass;
     }
 
-    public String getZtid() {
-        return ztid;
+    public String getUsersex() {
+        return usersex;
     }
 
-    public void setZtid(String ztid) {
-        this.ztid = ztid;
+    public void setUsersex(String usersex) {
+        this.usersex = usersex;
     }
 
-    public String getXinuserpass() {
-        return xinuserpass;
+    public String getUsertime() {
+        return usertime;
     }
 
-    public void setXinuserpass(String xinuserpass) {
-        this.xinuserpass = xinuserpass;
+    public void setUsertime(String usertime) {
+        this.usertime = usertime;
+    }
+
+    public String getUserage() {
+        return userage;
+    }
+
+    public void setUserage(String userage) {
+        this.userage = userage;
     }
 
     @Override
@@ -70,8 +81,9 @@ public class User implements Serializable{
                 "userid=" + userid +
                 ", username='" + username + '\'' +
                 ", userpass='" + userpass + '\'' +
-                ", ztid='" + ztid + '\'' +
-                ", xinuserpass='" + xinuserpass + '\'' +
+                ", usersex='" + usersex + '\'' +
+                ", usertime='" + usertime + '\'' +
+                ", userage='" + userage + '\'' +
                 '}';
     }
 }

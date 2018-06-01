@@ -94,7 +94,7 @@ public class DaGang implements Serializable{
                 ", ynvip=" + ynvip +
                 ", xiaojie='" + xiaojie + '\'' +
                 ", courseid=" + courseid +
-                ", username='" + username + '\'' +
+
                 '}';
     }
 }

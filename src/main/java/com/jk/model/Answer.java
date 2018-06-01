@@ -15,6 +15,33 @@ public class Answer implements Serializable{
     private   String    beizancode;
     private   String    questionname;
     private   String    peoplename;
+    private   Integer    zannum;
+    private   Integer    peopleid;
+    private   Integer    num;
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
+    public Integer getPeopleid() {
+        return peopleid;
+    }
+
+    public void setPeopleid(Integer peopleid) {
+        this.peopleid = peopleid;
+    }
+
+    public Integer getZannum() {
+        return zannum;
+    }
+
+    public void setZannum(Integer zannum) {
+        this.zannum = zannum;
+    }
 
     public String getQuestionname() {
         return questionname;

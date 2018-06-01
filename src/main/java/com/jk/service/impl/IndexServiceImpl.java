@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by 世龙同学 on 2018/5/24.
  */
 @Service
-public class IndexServiceImpl implements IndexService{
+public class IndexServiceImpl implements IndexService {
 
     @Autowired
     private IndexDao indexDao;
@@ -70,7 +70,7 @@ public class IndexServiceImpl implements IndexService{
     @Override
     public Map<String, Object> queryCoursePing(int page, int rows, int courseid) {
         long tot = indexDao.queryCoursePingCount(courseid);
-        List<Comment> uss = indexDao.queryCoursePing((page-1)*rows,rows,courseid);
+        List<Comment> uss = indexDao.queryCoursePing((page - 1) * rows, rows, courseid);
 
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("total", tot);
@@ -85,7 +85,7 @@ public class IndexServiceImpl implements IndexService{
 
     @Override
     public PingZan queryNoOrYesPing(Integer comid, Integer peopleid) {
-        return indexDao.queryNoOrYesPing(comid,peopleid);
+        return indexDao.queryNoOrYesPing(comid, peopleid);
     }
 
     @Override
@@ -95,13 +95,22 @@ public class IndexServiceImpl implements IndexService{
 
     @Override
     public void addPingZan(Integer comid, Integer peopleid) {
-        indexDao.addPingZan(comid,peopleid);
+        indexDao.addPingZan(comid, peopleid);
     }
 
     @Override
     public Course queryDGinfo(Integer courseid, Integer dgid) {
-        return indexDao.queryDGinfo(courseid,dgid);
+        return indexDao.queryDGinfo(courseid, dgid);
     }
 
+    @Override
+    public String queryDgidOrVideo(Integer dgid) {
 
+        Video video = indexDao.queryDgidOrVideo(dgid);
+        if (video == null) {
+            return "No";
+        } else {
+            return "Yes";
+        }
+    }
 }

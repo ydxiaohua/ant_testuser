@@ -63,7 +63,7 @@ public interface UserDao {
 
     void updateqx(Menu menu);
 
-    List yzmm(@Param("username") String username,@Param("userpass") String userpass);
+    List yzmm(@Param("username") String username, @Param("userpass") String userpass);
 
-    void xiugaimm(@Param("username") String username,@Param("xinuserpass") String xinuserpass);
+    void xiugaimm(@Param("username") String username, @Param("xinuserpass") String xinuserpass);
 }

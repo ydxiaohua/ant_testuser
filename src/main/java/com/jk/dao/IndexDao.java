@@ -41,4 +41,6 @@ public interface IndexDao {
     void PingLunDianZan(Integer comid);
 
     Course queryDGinfo(@Param("courseid")Integer courseid, @Param("dgid")Integer dgid);
+
+    Video queryDgidOrVideo(Integer dgid);
 }

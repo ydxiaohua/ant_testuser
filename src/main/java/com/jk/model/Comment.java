@@ -11,7 +11,7 @@ public class Comment implements Serializable {
     private Integer  comcode;
     private Integer  courseid;
     private Integer  peopleid;
-
+    private String email;
 
     public Integer getComid() {
         return comid;
@@ -61,6 +61,14 @@ public class Comment implements Serializable {
         this.peopleid = peopleid;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
@@ -70,6 +78,7 @@ public class Comment implements Serializable {
                 ", comcode=" + comcode +
                 ", courseid=" + courseid +
                 ", peopleid=" + peopleid +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

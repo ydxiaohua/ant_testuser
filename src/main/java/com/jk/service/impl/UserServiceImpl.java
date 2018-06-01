@@ -4,6 +4,8 @@ package com.jk.service.impl;
 import com.alibaba.dubbo.common.json.JSONObject;
 import com.jk.dao.UserDao;
 import com.jk.model.*;
+import com.jk.mysql.DbContextHolder;
+import com.jk.mysql.ReadOnlyConnection;
 import com.jk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-
+    @ReadOnlyConnection
     @Override
     public List<User> queryUserName(User user) {
         return userDao.queryUserName(user);
@@ -220,7 +222,7 @@ public class UserServiceImpl implements UserService {
         List list = userDao.yzmm(user.getUsername(),user.getUserpass());
         String aa = "";
         if(list.size()>0){
-            userDao.xiugaimm(user.getUsername(),user.getXinuserpass());
+            userDao.xiugaimm(user.getUsername(),user.getUserpass());
             aa = "修改成功！";
         }else{
             aa = "密码错误！";

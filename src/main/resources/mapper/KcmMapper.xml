@@ -25,16 +25,58 @@
                     t1.peopleid =t2.peopleid
     </select>
 
+
+    <!--查询我的提问-->
+    <select id="querytiwen"  parameterType="java.lang.Integer" resultType="com.jk.model.Courseproblem">
+        SELECT t1.*,t2.peoplename
+             from t_question t1,t_people t2 WHERE
+                    t1.peopleid =t2.peopleid and t1.peopleid=#{peopleid}
+    </select>
+    <!--查询我的回答-->
+    <select id="querymyhuida"  parameterType="java.lang.Integer" resultType="com.jk.model.Courseproblem">
+        SELECT t1.*,t2.peoplename ,t3.resultcontent
+             from t_question t1,t_people t2 ,t_result t3
+                  WHERE   t1.peopleid =t2.peopleid and  t1.peopleid=t3.userid
+                         AND t1.questionid=t3.questionid
+                              and  t1.peopleid=#{peopleid}  GROUP BY t1.questionid
+    </select>
+
+
+    <!--查询问题列表最新-->
+    <select id="querynew" resultType="com.jk.model.Courseproblem">
+        SELECT t1.*,t2.peoplename
+             from t_question t1,t_people t2 WHERE
+                    t1.peopleid =t2.peopleid  ORDER BY t1.questiondate DESC
+    </select>
+
+
+    <!--查询问题列表最热-->
+    <select id="queryhot" resultType="com.jk.model.Courseproblem">
+        SELECT t1.*,t2.peoplename
+             from t_question t1,t_people t2 WHERE
+                    t1.peopleid =t2.peopleid  ORDER BY t1.looknum DESC
+    </select>
+
     <!--查询浏览数通过id-->
     <select id="querywenbyid" resultType="java.lang.Integer">
         SELECT  looknum  from t_question WHERE questionid=#{questionid}
     </select>
-    <!--查询浏览数通过id-->
+
+    <!--去回复页面通过id-->
     <select id="tohuifu" resultType="com.jk.model.Courseproblem">
-        SELECT  *  from t_question WHERE questionid=#{questionid}
+        SELECT  t1.*,t2.peoplename  from t_question  t1,t_people  t2 WHERE
+          t1.peopleid=t2.peopleid  and questionid=#{questionid}
     </select>
 
-    <!--查询页面热门问题推荐-->
+    <!--查询回复的答案-->
+    <select id="queryhuifu" resultType="com.jk.model.Answer">
+       SELECT   t1.peoplename,t1.peopleid,t2.* ,t3.zannum,sum(t3.zannum) AS num
+        from t_people  t1,t_result  t2,t_zan t3
+                where t1.peopleid=t2.userid AND t2.resultid=t3.resultid
+										AND t2.questionid =#{questionid} GROUP BY resultid
+    </select>
+
+    <!--查询右侧页面热门问题推荐-->
     <select id="querypagewen" resultType="com.jk.model.Courseproblem">
         select  t1.* ,COUNT(t2.resultid)  AS  huidashu
                from t_question t1,t_result t2
@@ -42,6 +84,29 @@
 									 ORDER BY COUNT(t2.resultid) desc
 
     </select>
+    <!--查询页面热门问题推荐-->
+    <select id="querywenshow" resultType="com.jk.model.Courseproblem">
+        select  t1.* ,t2.peoplename
+            from t_question t1,t_people t2
+			            where t1.peopleid=t2.peopleid
+
+    </select>
+
+    <!--查询课程问答列表-->
+    <select id="querywenshow1" parameterType="java.lang.Integer" resultType="com.jk.model.Courseproblem">
+       select  t1.* ,t2.peoplename
+            from t_question t1,t_people t2
+			            where t1.peopleid=t2.peopleid  and t1.typeid=#{typeid}
+
+    </select>
+
+    <!--根据问题类型查询问题-->
+    <select id="querybywenid" parameterType="java.lang.Integer" resultType="com.jk.model.Courseproblem">
+       select  t1.*  from t_question t1
+			            where   t1.questiontypeid  like '%${questionid}%'
+
+    </select>
+
     <!--查询答案-->
     <select id="querydaanList" resultType="com.jk.model.Answer">
           SELECT  t1.*,t2.questionname,t3.peoplename
@@ -52,7 +117,7 @@
     <!--新增问题-->
     <insert id="addWenti" parameterType="com.jk.model.Courseproblem">
         INSERT into t_question values
-		(#{questionid},#{peopleid},#{questiontypeid},#{questioncontent},#{questionname},#{questiondate},#{typeid})
+		(#{questionid},#{peopleid},#{questiontypeid},#{questioncontent},#{questionname},#{questiondate},#{typeid},#{looknum})
     </insert>
 
     <!--新增问题类型-->
@@ -62,9 +127,13 @@
     </insert>
 
     <!--新增答案-->
-    <insert id="adddaan" parameterType="com.jk.model.Answer">
+    <insert id="adddaan" parameterType="com.jk.model.Answer" useGeneratedKeys="true" keyProperty="resultid">
         INSERT into t_result values
 		   (#{resultid},#{questionid},#{resultcontent},#{userid},#{resultdate},#{beizancode})
+    </insert>
+    <!--新增点赞表-->
+    <insert id="addZan" parameterType="com.jk.model.Zan">
+         INSERT   into t_zan values  (#{zanid},#{resultid},#{zannum},#{peopleid})
     </insert>
 
     <!--查询问题类型-->
@@ -120,9 +189,35 @@
                          WHERE questionid=#{questionid}
     </update>
 
+    <!--查询点赞数通过id-->
+    <select id="queryzanbyid" resultType="java.lang.Integer">
+        SELECT  beizancode  from t_result WHERE resultid=#{resultid}
+    </select>
+
+    <!--判断用户是否点过赞-->
+    <select id="ifclick" resultType="com.jk.model.Zan">
+        SELECT  *  from  t_zan   WHERE   peopleid   =#{peopleid} and resultid=#{resultid}
+    </select>
+
+
+    <!--修改点赞数已点赞-->
+    <update id="updatezan1"  parameterType="com.jk.model.Zan">
+        UPDATE  t_zan SET zannum = 0  WHERE peopleid=#{peopleid} and resultid =#{resultid}
+    </update>
+
+    <!--修改点赞数未点赞-->
+    <update id="updatezan2"  parameterType="com.jk.model.Zan">
+           INSERT   into t_zan values  (#{zanid},#{resultid},#{zannum},#{peopleid})
+    </update>
+
+    <!--用户再次点击判断点赞数-->
+    <update id="updatezan3"  parameterType="com.jk.model.Zan">
+           UPDATE  t_zan SET zannum = 1  WHERE  peopleid=#{peopleid} and resultid =#{resultid}
+    </update>
+
     <!--删除问题-->
     <delete id="deletewen" parameterType="java.lang.Integer">
-        DELETE  FROM t_question   WHERE questionid = #{id}
+            DELETE  FROM t_question   WHERE questionid = #{id}
     </delete>
 
     <!--删除问题类型-->

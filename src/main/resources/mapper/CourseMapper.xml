@@ -19,7 +19,7 @@
 
 
   <insert id="addTeacher">
-    insert into t_teacher values (teacherid,#{teachername},#{teacherdate})
+    insert into t_teacher values (teacherid,#{teachername},#{teacherdate},#{teacherstate},#{teachernote})
   </insert>
 
 
@@ -42,7 +42,7 @@
 
   <update id="updateteacher">
 
-    update t_teacher set teachername=#{teachername},teacherdate=#{teacherdate}  where  teacherid=#{teacherid}
+    update t_teacher set teachername=#{teachername},teacherdate=#{teacherdate} teacherstate=#{teacherstate} teachernote=#{teachernote} where  teacherid=#{teacherid}
 
   </update>
  <!-- updatetongguo-->
@@ -160,7 +160,7 @@
 
 
   <insert id="addcourse">
-    insert into t_course values (courseid,#{teacherid},#{coursename},#{xianprice},#{yuanprice},#{dazhe},#{jieshao},#{classid},#{ynvip},#{coursecode},#{downcode},#{lookcode},#{lunbotustate},#{tuiguangphoto},#{ynjingpin})
+    insert into t_course values(courseid,#{teacherid},#{coursename},#{xianprice},#{yuanprice},#{dazhe},#{jieshao},#{classid},#{ynvip},#{coursecode},#{coursedate},#{downcode},#{lookcode},#{lunbotustate},#{tuiguangphoto},#{ynjingpin},#{showphoto})
   </insert>
 
 
@@ -183,14 +183,14 @@
 
   <update id="updatecourse">
 
-    update t_course set teacherid=#{teacherid},coursename=#{coursename},xianprice=#{xianprice},yuanprice=#{yuanprice},dazhe=#{dazhe},jieshao=#{jieshao},classid=#{classid},ynvip=#{ynvip},coursecode=#{coursecode},downcode=#{downcode},lookcode=#{lookcode},lunbotustate=#{lunbotustate},tuiguangphoto=#{tuiguangphoto},ynjingpin=#{ynjingpin}  where  courseid=#{courseid}
+    update t_course set teacherid=#{teacherid},coursename=#{coursename},xianprice=#{xianprice},yuanprice=#{yuanprice},dazhe=#{dazhe},jieshao=#{jieshao},classid=#{classid},ynvip=#{ynvip},coursecode=#{coursecode},downcode=#{downcode},lookcode=#{lookcode},lunbotustate=#{lunbotustate},tuiguangphoto=#{tuiguangphoto},ynjingpin=#{ynjingpin},showphoto=#{showphoto} where  courseid=#{courseid}
 
   </update>
   <!--queryvideo-->
 
   <select  id="queryvideo" resultType="com.jk.model.Video">
 
-   select v.*,c.classname coursename,d.dgname dgname,u.username username  from t_video v, t_class c, t_dagang d,t_user u where v.courseid = c.classid and v.dgid = d.dgid and v.userid = u.userid
+   select v.*,c.coursename coursename,d.dgname dgname,u.username username  from t_video v, t_course c, t_dagang d,t_user u where v.courseid = c.courseid and v.dgid = d.dgid and v.userid = u.userid
   </select>
 
  <select id="queryshenheteacherid" resultType="com.jk.model.Teacher">

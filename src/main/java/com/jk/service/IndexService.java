@@ -40,4 +40,6 @@ public interface IndexService {
 
     Course queryDGinfo(Integer courseid, Integer dgid);
 
+    String queryDgidOrVideo(Integer dgid);
+
 }

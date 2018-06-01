@@ -7,6 +7,8 @@ import com.jk.model.People;
 import com.jk.model.Xia;
 import com.jk.service.EchartsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2018/5/17.
  */
+@Service
 public class EchartsServiceImpl implements EchartsService {
 
     @Autowired
@@ -49,7 +52,6 @@ public class EchartsServiceImpl implements EchartsService {
 
     @Override
     public List<Liu> chaxliu() {
-
 
         return echartsdao.chaxliu();
     }
@@ -108,13 +110,11 @@ public class EchartsServiceImpl implements EchartsService {
 
         String   login= "";
         List<People> user=echartsdao.register(username,phoe);
-        People   people ;
+        People   people =new  People();
         if(user.size()==0){
-            people  =new  People();
             people.setEmail(username);
-            people.setPeoplepass(password);
             people.setPhone(phoe);
-            people.setYnvip(0);
+            people.setPeoplepass(password);
             echartsdao.addregister(people);
             People list=echartsdao.querylogin(username);
             map.put("list",list);
@@ -139,19 +139,30 @@ public class EchartsServiceImpl implements EchartsService {
 
           String  list="ok";
            People  people  =new  People();
+
           people.setPeopleage(peopleage);
+
           people.setPeoplenickname(peoplenickname);
+
           people.setPeopleid(peopleid);
+
           people.setPeoplesex(peoplesex);
+
           echartsdao.uolistuser(people);
+
           return list;
     }
 
     @Override
     public void upuserpass(String peoplepass, Integer peopleid) {
+
         People  people  =new  People();
+
         people.setPeopleid(peopleid);
+
         people.setPeoplepass(peoplepass);
+
         echartsdao.upuserpass(people);
+
     }
 }

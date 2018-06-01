@@ -50,4 +50,36 @@ public interface KcmDao {
     void updatenum(@Param("questionid") Integer questionid, @Param("num") Integer num);
 
     Courseproblem tohuifu(Integer questionid);
+
+
+    List queryhuifu(Integer questionid);
+
+    List<Courseproblem> querywenshow();
+
+    List<Courseproblem> querywenshow1(Integer typeid);
+
+
+    Integer queryzanbyid(Integer resultid);
+
+    List<Courseproblem> querybywenid(@Param("questionid") Integer questionid);
+
+
+    void updatezan2(Zan zan);
+
+    List<Zan> ifclick(@Param("peopleid") Integer peopleid, @Param("resultid") Integer resultid);
+
+    List<Courseproblem> querynew();
+
+    List<Courseproblem> queryhot();
+
+    void updatezan1(@Param("peopleid") Integer peopleid, @Param("resultid") Integer resultid);
+
+    void updatezan3(@Param("peopleid") Integer peopleid, @Param("resultid") Integer resultid);
+
+    void addZan(Zan zan);
+
+
+    List<Courseproblem> querytiwen(Integer peopleid);
+
+    List<Courseproblem> querymyhuida(Integer peopleid);
 }

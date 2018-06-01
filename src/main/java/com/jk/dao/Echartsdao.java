@@ -4,7 +4,7 @@ import com.jk.model.Course;
 import com.jk.model.Liu;
 import com.jk.model.People;
 import com.jk.model.Xia;
-import io.lettuce.core.dynamic.annotation.Param;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -30,11 +30,12 @@ public interface Echartsdao {
 
     List<People> register(@Param("name")String username,@Param("phoe") String phoe);
 
+
     void addregister(People people);
 
-    List<People> listuser(@Param("userid")Integer userid);
+    List<People> listuser(Integer userid);
 
-    void uolistuser(People  people);
+    void uolistuser(People people);
 
-    void upuserpass(People  people);
+    void upuserpass(People people);
 }
