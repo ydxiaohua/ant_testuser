@@ -115,6 +115,7 @@ public class EchartsServiceImpl implements EchartsService {
             people.setEmail(username);
             people.setPhone(phoe);
             people.setPeoplepass(password);
+            people.setYnvip(1);
             echartsdao.addregister(people);
             People list=echartsdao.querylogin(username);
             map.put("list",list);

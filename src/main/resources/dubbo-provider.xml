@@ -13,10 +13,13 @@
     <!-- 使用multicast广播注册中心暴露服务地址 -->
     <!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
     <!-- 使用zookeeper注册中心暴露服务地址 -->
+
     <dubbo:registry address="zookeeper://127.0.0.1:2181" />
 
     <!-- 用dubbo协议在20880端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20880" />
+
+
     <!-- 声明需要暴露的服务接口 myService要和下面id保持一致-->
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.jk.service.BaomingService"  ref="twlmyService" timeout="1000000"/>
@@ -25,6 +28,7 @@
     <dubbo:service interface="com.jk.service.EchartsService" ref="echartService" timeout="120000"/>
     <dubbo:service interface="com.jk.service.KcmService" ref="kcmService" timeout="120000"/>
     <dubbo:service interface="com.jk.service.TestService" ref="testService" timeout="120000"/>
+
     <dubbo:service interface="com.jk.service.IndexService" ref="indexService" timeout="120000"/>
 
 
@@ -35,5 +39,6 @@
     <bean id="twlmyService" class="com.jk.service.impl.BaomingServiceImpl" />
     <bean id="twoService" class="com.jk.service.impl.UserServiceImpl" />
     <bean id="indexService" class="com.jk.service.impl.IndexServiceImpl" />
+
 
 </beans>

@@ -42,7 +42,7 @@ insert into  t_liu  values (#{liuid},#{syllabusid},#{shulian})
     </select>
     <insert id="addregister"  parameterType="com.jk.model.People">
 
-        insert into  t_people (email,phone,peoplepass)  values (#{email},#{phone},#{peoplepass})
+        insert into  t_people (email,phone,peoplepass,ynvip)  values (#{email},#{phone},#{peoplepass},#{ynvip})
     </insert>
 
   <select  id="listuser" resultType="com.jk.model.People">
