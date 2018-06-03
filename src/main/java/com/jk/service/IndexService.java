@@ -42,4 +42,19 @@ public interface IndexService {
 
     String queryDgidOrVideo(Integer dgid);
 
+    void deleteImg(Integer imgid);
+
+    Img huixianImg(Integer imgid);
+
+    void updateImg(Img img);
+
+    void ShowLunBoImg(Integer imgid);
+
+    void HideLunBoImg(Integer imgid);
+
+    Integer queryShowImgNum();
+
+    List<Img> queryIndexImg();
+
+
 }

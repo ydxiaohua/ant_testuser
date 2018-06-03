@@ -35,8 +35,8 @@
     </select>
 
     <insert id="addImg"  parameterType="com.jk.model.Img">
-        insert into  t_img (img,imgdate)
-        values(#{img},#{imgdate})
+        insert into  t_img (img,imgdate,imgstate)
+        values(#{img},#{imgdate},#{imgstate})
     </insert>
 
     <select  id="queryCourseAllOrId" resultType="com.jk.model.Course">
@@ -101,4 +101,46 @@
         SELECT  *  from  t_video where dgid=#{dgid}
 
     </select>
+
+    <delete id="deleteImg">
+        delete from t_img  where  imgid =#{imgid}
+    </delete>
+
+    <select id="huixianImg" resultType="com.jk.model.Img">
+
+        select  *  from t_img where imgid = #{imgid}
+
+    </select>
+
+    <update id="updateImg" parameterType="com.jk.model.Img">
+
+        update t_img set img=#{img},imgdate=#{imgdate}  where  imgid = #{imgid}
+
+    </update>
+
+    <update id="ShowLunBoImg" parameterType="com.jk.model.Img">
+
+        update   t_img   set   imgstate=0   where   imgid = #{imgid}
+
+    </update>
+
+    <update id="HideLunBoImg" parameterType="com.jk.model.Img">
+
+        update   t_img   set   imgstate=1   where   imgid = #{imgid}
+
+    </update>
+
+    <select  id="queryShowImgNum" resultType="int">
+
+        SELECT  count(*)  from  t_img where imgstate=0
+
+    </select>
+
+    <select  id="queryIndexImg" resultType="com.jk.model.Img">
+
+        SELECT  *  from  t_img where imgstate=0
+
+    </select>
+
+
 </mapper>

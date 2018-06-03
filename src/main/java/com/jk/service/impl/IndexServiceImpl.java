@@ -113,4 +113,41 @@ public class IndexServiceImpl implements IndexService {
             return "Yes";
         }
     }
+
+    @Override
+    public void deleteImg(Integer imgid) {
+        indexDao.deleteImg(imgid);
+    }
+
+    @Override
+    public Img huixianImg(Integer imgid) {
+        return indexDao.huixianImg(imgid);
+    }
+
+    @Override
+    public void updateImg(Img img) {
+        indexDao.updateImg(img);
+    }
+
+    @Override
+    public void ShowLunBoImg(Integer imgid) {
+        indexDao.ShowLunBoImg(imgid);
+    }
+
+    @Override
+    public void HideLunBoImg(Integer imgid) {
+        indexDao.HideLunBoImg(imgid);
+    }
+
+    @Override
+    public Integer queryShowImgNum() {
+        return indexDao.queryShowImgNum();
+    }
+
+    @Override
+    public List<Img> queryIndexImg() {
+        return indexDao.queryIndexImg();
+    }
+
+
 }
